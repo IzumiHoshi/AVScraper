@@ -14,7 +14,7 @@ if not exists('演员头像'):
 print('正在读取ini中的设置...')
 config_settings = RawConfigParser()
 try:
-    config_settings.read('【点我设置整理规则】.ini', encoding='utf-8-sig')
+    config_settings.read('【点我设置整理规则】.ini', encoding='utf-8')
     url_emby = config_settings.get("emby/jellyfin", "网址")
     api_key = config_settings.get("emby/jellyfin", "api id")
     bool_replace = True if config_settings.get("emby/jellyfin", "是否覆盖以前上传的头像？") == '是' else False

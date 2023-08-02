@@ -155,13 +155,13 @@ def collect_sculpture(list_actors, root_now):
             pic_type = '.png'
         else:
             config_actor = RawConfigParser()
-            config_actor.read('【缺失的演员头像统计For Kodi】.ini', encoding='utf-8-sig')
+            config_actor.read('【缺失的演员头像统计For Kodi】.ini', encoding='utf-8')
             try:
                 each_actor_times = config_actor.get('缺失的演员头像', each_actor)
                 config_actor.set("缺失的演员头像", each_actor, str(int(each_actor_times) + 1))
             except:
                 config_actor.set("缺失的演员头像", each_actor, '1')
-            config_actor.write(open('【缺失的演员头像统计For Kodi】.ini', "w", encoding='utf-8-sig'))
+            config_actor.write(open('【缺失的演员头像统计For Kodi】.ini', "w", encoding='utf-8'))
             continue
         # 已经收录了这个演员头像
         root_dest_actor = root_now + sep + '.actors' + sep  # 头像的目标文件夹

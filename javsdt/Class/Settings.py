@@ -2,14 +2,14 @@
 from configparser import RawConfigParser
 from os import system
 from os.path import exists
-from aip import AipBodyAnalysis
+# from aip import AipBodyAnalysis
 
 
 # 设置
 class Settings(object):
     def __init__(self, av_type):
         config_settings = RawConfigParser()
-        config_settings.read('【点我设置整理规则】.ini', encoding='utf-8-sig')
+        config_settings.read('【点我设置整理规则】.ini', encoding='utf-8')
         ####################################################### nfo ###################################################
         # 是否 跳过已存在nfo的文件夹，不处理已有nfo的文件夹
         self.bool_skip = True if config_settings.get("收集nfo", "是否跳过已存在nfo的文件夹？") == '是' else False

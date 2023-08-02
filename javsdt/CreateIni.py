@@ -83,7 +83,7 @@ try:
     config_settings.set("百度人体分析", "appid", "")
     config_settings.set("百度人体分析", "api key", "")
     config_settings.set("百度人体分析", "secret key", "")
-    config_settings.write(open('【点我设置整理规则】.ini', "w", encoding='utf-8-sig'))
+    config_settings.write(open('【点我设置整理规则】.ini', "w", encoding='utf-8'))
     print('    >“【点我设置整理规则】.ini”重写成功！')
     ####################################################################################################################
     config_actor = RawConfigParser()
@@ -92,7 +92,7 @@ try:
     config_actor.add_section("说明")
     config_actor.set("说明", "上面的“演员姓名 = N(次数)”的表达式", "后面的N数字表示你有N部(次)影片都在找她的头像，可惜找不到")
     config_actor.set("说明", "你可以去保存一下她的头像jpg到“演员头像”文件夹", "以后就能保存她的头像到影片的文件夹了")
-    config_actor.write(open('actors_for_kodi.ini', "w", encoding='utf-8-sig'))
+    config_actor.write(open('actors_for_kodi.ini', "w", encoding='utf-8'))
     print('    >“actors_for_kodi.ini”重写成功！')
     system('pause')
 except:
