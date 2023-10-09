@@ -1,3 +1,13 @@
+'''
+Author: izumihoshi
+Date: 2023-05-13 11:58:40
+LastEditors: izumihoshi
+LastEditTime: 2023-10-09 22:41:34
+FilePath: \javsdt\javlibrary.py
+Description: TODO
+
+Copyright (c) 2023 by Honor, All Rights Reserved.
+'''
 # -*- coding:utf-8 -*-
 import os, re
 from shutil import copyfile
@@ -22,7 +32,7 @@ from Functions.Car import find_car_library, list_suren_car
 from Functions.Standard import collect_sculpture
 from Functions.Baidu import translate
 from Functions.Picture import add_watermark_divulge, crop_poster_youma
-from Functions.Requests.JavlibraryReq import get_library_html
+from Functions.Requests.JavlibraryReq import get_library_html,search_library_html
 from Functions.Requests.ArzonReq import steal_arzon_cookies, find_plot_arzon
 from Functions.Requests.JavbusReq import find_series_cover_bus
 
@@ -243,9 +253,10 @@ while input_start_key == '':
                         continue  # 【退出对该jav的整理】
                 # 用户没有指定网址，则去搜索
                 else:
-                    url_search_web = url_library + 'vl_searchbyid.php?keyword=' + jav.car
-                print('    >搜索车牌：', url_search_web)
+                    url_search_web = search_library_html(url_library, jav.car, proxy_library)
+
                 # 得到javlibrary搜索网页html
+                print('    >搜索车牌：', url_search_web)
                 html_web = get_library_html(url_search_web, proxy_library)
                 # 从前：搜索结果，大部分情况就是这个影片的网页（搜索结果唯一，javlibrary会自动跳转到该jav唯一的网页），另一种情况是多个搜索结果的网页
                 # 1.1.2版本请无视这一行：访问javlibrary需要cloudflare的通行证，自动跳转时，cookie会发生变化，导致用现有cookie无权访问跳转后的页面。所以现在程序不希望requests帮助自动跳转，而是只得到跳转前网页上的线索，再自行访问这个跳转目标网页。
@@ -459,7 +470,7 @@ while input_start_key == '':
                     plot = ''
                 #######################################################################
                 # 前往javbus查找系列，顺便查找图片url，因为javlibrary引用dmm的图片，晚上下载很慢，可以设置优先从javbus下载
-                series, url_cover_bus, status_series = find_series_cover_bus(car, url_bus, proxy_bus)
+                series, url_cover_bus, status_series = (None, None, None) # find_series_cover_bus(car, url_bus, proxy_bus)
                 if status_series:
                     num_warn += 1
                     record_warn(
